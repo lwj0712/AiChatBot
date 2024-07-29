@@ -1,1 +1,1 @@
-# mini_project
+# ai 영화추천 서비스
