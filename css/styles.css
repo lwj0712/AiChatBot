@@ -41,6 +41,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: #b2c7d9;
+    border-radius: 20px;
 }
 
 #chat-messages {
@@ -61,14 +62,14 @@ body {
 .user-message {
     float: right;
     background-color: #fef01b;
-    border-radius: 5px;
+    border-radius: 5px 5px 5px 5px;
     padding: 10px 15px;
 }
 
 .bot-message {
     float: left;
     background-color: #ffffff;
-    border-radius: 5px;
+    border-radius: 5px 5px 5px 5px;
     padding: 10px 15px;
 }
 
