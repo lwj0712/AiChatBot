@@ -1,28 +1,24 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    const startPage = document.getElementById('start-page');
+    const chatContainer = document.getElementById('chat-container');
+    const startBtn = document.getElementById('start-btn');
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
 
-    function addMessage(content, isUser = false, isTemporary = false) {
+    startBtn.addEventListener('click', () => {
+        startPage.style.display = 'none';
+        chatContainer.style.display = 'flex';
+        addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
+    });
+
+    function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
-        
-        const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
-        
-        messageElement.innerHTML = formattedContent;
-        if (isTemporary) {
-            messageElement.id = 'temporary-message';
-        }
+        messageElement.textContent = content;
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function removeTemporaryMessage() {
-        const tempMessage = document.getElementById('temporary-message');
-        if (tempMessage) {
-            tempMessage.remove();
-        }
     }
 
     async function getRecommendation(userInput) {
@@ -91,9 +87,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('잠시만 기다려주세요...', false, true);
+            addMessage('잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
-            removeTemporaryMessage();
             addMessage(recommendation);
         }
     });
@@ -103,6 +98,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
             submitBtn.click();
         }
     });
-
-    addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
 });
