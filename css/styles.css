@@ -39,14 +39,14 @@ h1 {
 .user-message {
     float: right;
     background-color: #fef01b;
-    border-radius: 10px 0 10px 10px;
+    border-radius: 5px 5px 5px 5px;
     padding: 10px 15px;
 }
 
 .bot-message {
     float: left;
     background-color: #ffffff;
-    border-radius: 0 10px 10px 10px;
+    border-radius: 5px 5px 5px 5px;
     padding: 10px 15px;
 }
 
