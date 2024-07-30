@@ -3,13 +3,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
 
-    function addMessage(content, isUser = false, isTemp = false) {
+    function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
-        if (isTemp) {
-            messageElement.classList.add('temp-message');
-        }
         
         const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
@@ -84,9 +81,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            const tempMessage = addMessage('잠시만 기다려주세요...', false, true);
+            addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
-            chatMessages.removeChild(tempMessage);
             addMessage(recommendation);
         }
     });

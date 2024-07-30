@@ -27,10 +27,6 @@ h1 {
     padding: 20px;
 }
 
-.temp-message {
-    font-style: italic;
-}
-
 .message {
     margin-bottom: 15px;
     max-width: 70%;
