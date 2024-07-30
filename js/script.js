@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     startBtn.addEventListener('click', () => {
         startPage.style.display = 'none';
-        chatContainer.style.display = 'flex';
+        chatContainer.style.display = 'block';
         addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
     });
 
@@ -43,21 +43,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             [스포일러 없이 사용자의 흥미를 유발할 수 있는 영화의 대략적인 줄거리를 2-3문장으로 작성.]
 
             4. 추가 정보:
-            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]
-                
-            예시:
-            1. 제목: 인셉션 inception (2010) / SF, 액션
-            - 별점: ★★★★☆
-            - 한 줄 평론: "꿈속의 꿈, 당신의 상상력을 초월하는 영화!"
-
-            2. 선정 이유: 
-            "인셉션은 혁신적인 스토리텔링과 놀라운 시각 효과로 유명합니다. 크리스토퍼 놀란 감독의 걸작으로, 영화의 복잡한 구조와 몰입감이 돋보입니다."
-
-            3. 시놉시스: 
-            "꿈을 통해 정보를 훔치는 도둑이 마지막 임무로 꿈을 심어야 하는 상황에 처합니다. 현실과 꿈의 경계가 모호해지는 서스펜스 넘치는 여정을 그린 영화입니다."
-            
-            4. 추가 정보: 
-            "영화 속에서 등장하는 '토템'은 각 캐릭터의 현실 인식을 위한 중요한 도구입니다."`}           
+            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]`}           
         ];
 
         try {
