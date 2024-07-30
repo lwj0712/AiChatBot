@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
 
-    function addMessage(content, isUser = false) {
+    function addMessage(content, isUser = false, isTemporary = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
@@ -11,8 +11,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
         messageElement.innerHTML = formattedContent;
+        if (isTemporary) {
+            messageElement.id = 'temporary-message';
+        }
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTemporaryMessage() {
+        const tempMessage = document.getElementById('temporary-message');
+        if (tempMessage) {
+            tempMessage.remove();
+        }
     }
 
     async function getRecommendation(userInput) {
@@ -81,8 +91,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('잠시만 기다려주세요...');
+            addMessage('잠시만 기다려주세요...', false, true);
             const recommendation = await getRecommendation(input);
+            removeTemporaryMessage();
             addMessage(recommendation);
         }
     });
