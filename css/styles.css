@@ -4,7 +4,7 @@ body {
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #a1c0d5;
+    background-color: #f7faff;
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
 }
 
 #chat-container {
-    background-color: #f7faff;
+    background-color: #b2c7d9;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
