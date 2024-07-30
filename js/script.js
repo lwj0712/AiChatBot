@@ -1,16 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const landingPage = document.getElementById('landing-page');
-    const chatContainer = document.getElementById('chat-container');
-    const startBtn = document.getElementById('start-btn');
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
-
-    startBtn.addEventListener('click', () => {
-        landingPage.style.display = 'none';
-        chatContainer.style.display = 'flex';
-        addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
-    });
 
     function addMessage(content, isUser = false, isTemporary = false) {
         const messageElement = document.createElement('div');
@@ -112,4 +103,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
             submitBtn.click();
         }
     });
+
+    addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
 });
