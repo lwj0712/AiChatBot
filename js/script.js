@@ -3,16 +3,42 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
 
-    function addMessage(content, isUser = false) {
+    // 사용자와 시스템의 프로필 이미지 URL을 설정합니다.
+    const userProfileImage = '/path/to/user-profile-image.jpg';
+    const systemProfileImage = '/path/to/system-profile-image.jpg';
+
+    function addMessage(content, isUser = false, isTemp = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+        if (isTemp) {
+            messageElement.classList.add('temp-message');
+        }
+        
+        const profileImage = document.createElement('img');
+        profileImage.src = isUser ? userProfileImage : systemProfileImage;
+        profileImage.alt = isUser ? 'User' : 'System';
+        profileImage.classList.add('profile-image');
+
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
         
         const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
-        messageElement.innerHTML = formattedContent;
+        messageContent.innerHTML = formattedContent;
+
+        if (isUser) {
+            messageElement.appendChild(messageContent);
+            messageElement.appendChild(profileImage);
+        } else {
+            messageElement.appendChild(profileImage);
+            messageElement.appendChild(messageContent);
+        }
+
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        return messageElement;
     }
 
     async function getRecommendation(userInput) {
@@ -81,8 +107,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...');
+            const tempMessage = addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...', false, true);
             const recommendation = await getRecommendation(input);
+            chatMessages.removeChild(tempMessage);
             addMessage(recommendation);
         }
     });
