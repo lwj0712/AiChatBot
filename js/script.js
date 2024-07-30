@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+        if (isTemp) {
+            messageElement.classList.add('temp-message');
+        }
         
         const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
@@ -81,8 +84,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...');
+            const tempMessage = addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...', false, true);
             const recommendation = await getRecommendation(input);
+            chatMessages.removeChild(tempMessage);
             addMessage(recommendation);
         }
     });
