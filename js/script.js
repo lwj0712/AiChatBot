@@ -84,9 +84,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            const tempMessage = addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...', false, true);
+            addMessage('잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
-            chatMessages.removeChild(tempMessage);
             addMessage(recommendation);
         }
     });
