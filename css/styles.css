@@ -27,31 +27,58 @@ h1 {
     padding: 20px;
 }
 
+.temp-message {
+    opacity: 0.7;
+    font-style: italic;
+}
+
 .message {
     margin-bottom: 15px;
     max-width: 70%;
     clear: both;
+    display: flex;
+    align-items: center;
+}
+
+.message-content {
     white-space: pre-wrap;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    padding: 10px 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
 }
 
 .user-message {
     float: right;
+    flex-direction: row-reverse;
+}
+
+.user-message .message-content {
     background-color: #fef01b;
-    border-radius: 5px 5px 5px 5px;
-    padding: 10px 15px;
+    margin-left: 10px;
 }
 
 .bot-message {
     float: left;
+}
+
+.bot-message .message-content {
     background-color: #ffffff;
-    border-radius: 5px 5px 5px 5px;
-    padding: 10px 15px;
+    margin-right: 10px;
+}
+
+.profile-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .message p {
-    margin: 0 0 10px 0;
+    margin: 0;
 }
 
 .message ol {
