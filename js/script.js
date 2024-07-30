@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('영화를 추천 중입니다. 잠시만 기다려주세요...');
+            addMessage('잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
             addMessage(recommendation);
         }
