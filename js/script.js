@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
 
-    function addMessage(content, isUser = false) {
+    function addMessage(content, isUser = false, isTemp = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
@@ -84,8 +84,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('잠시만 기다려주세요...');
+            const tempMessage = addMessage('잠시만 기다려주세요...', false, true);
             const recommendation = await getRecommendation(input);
+            chatMessages.removeChild(tempMessage);
             addMessage(recommendation);
         }
     });
