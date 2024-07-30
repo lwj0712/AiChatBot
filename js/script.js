@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
-    let lastRecommendation = null;
 
     function addMessage(content, isUser = false, isTemporary = false) {
         const messageElement = document.createElement('div');
@@ -17,14 +16,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        if (!isUser && !isTemporary) {
-            const moreInfoBtn = document.createElement('button');
-            moreInfoBtn.textContent = '더 자세한 정보';
-            moreInfoBtn.classList.add('more-info-btn');
-            moreInfoBtn.addEventListener('click', () => provideAdditionalInfo());
-            messageElement.appendChild(moreInfoBtn);
-        }
     }
 
     function removeTemporaryMessage() {
@@ -56,7 +47,21 @@ document.addEventListener('DOMContentLoaded', (event) => {
             [스포일러 없이 사용자의 흥미를 유발할 수 있는 영화의 대략적인 줄거리를 2-3문장으로 작성.]
 
             4. 추가 정보:
-            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]`}           
+            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]
+                
+            예시:
+            1. 제목: 인셉션 inception (2010) / SF, 액션
+            - 별점: ★★★★☆
+            - 한 줄 평론: "꿈속의 꿈, 당신의 상상력을 초월하는 영화!"
+
+            2. 선정 이유: 
+            "인셉션은 혁신적인 스토리텔링과 놀라운 시각 효과로 유명합니다. 크리스토퍼 놀란 감독의 걸작으로, 영화의 복잡한 구조와 몰입감이 돋보입니다."
+
+            3. 시놉시스: 
+            "꿈을 통해 정보를 훔치는 도둑이 마지막 임무로 꿈을 심어야 하는 상황에 처합니다. 현실과 꿈의 경계가 모호해지는 서스펜스 넘치는 여정을 그린 영화입니다."
+            
+            4. 추가 정보: 
+            "영화 속에서 등장하는 '토템'은 각 캐릭터의 현실 인식을 위한 중요한 도구입니다."`}           
         ];
 
         try {
@@ -73,64 +78,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             const result = await response.json();
-            lastRecommendation = result.choices[0].message.content;
-            return lastRecommendation;
+            return result.choices[0].message.content;
         } catch (error) {
             console.error('Error:', error);
             return '죄송합니다. 문제가 발생했습니다.';
-        }
-    }
-
-    async function provideAdditionalInfo() {
-        if (!lastRecommendation) {
-            addMessage('죄송합니다. 추가 정보를 제공할 영화 추천이 없습니다.');
-            return;
-        }
-
-        const url = "https://open-api.jejucodingcamp.workers.dev/";
-        
-        const data = [
-            {"role": "system", "content": "system은 영화 평론가 입니다. 이전에 추천한 영화에 대해 더 자세한 정보를 제공합니다."},
-            {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${lastRecommendation}
-
-            다음 형식에 맞춰 추가 정보를 작성해주세요:
-
-            1. 감독 및 주요 출연진:
-            [감독과 주요 배우들의 이름과 간단한 설명]
-
-            2. 제작 배경:
-            [영화가 만들어진 배경이나 특이사항 (2-3문장)]
-
-            3. 수상 내역 또는 평가:
-            [주요 수상 내역이나 비평가들의 평가 (있는 경우)]
-
-            4. 흥미로운 사실:
-            [영화와 관련된 재미있는 뒷이야기나 트리비아 (1-2개)]
-
-            주의: 스포일러는 포함하지 말아주세요.`}
-        ];
-
-        try {
-            addMessage('추가 정보를 가져오고 있습니다...', false, true);
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            if (!response.ok) {
-                throw new Error('API 요청에 실패했습니다.');
-            }
-
-            const result = await response.json();
-            removeTemporaryMessage();
-            addMessage(result.choices[0].message.content);
-        } catch (error) {
-            console.error('Error:', error);
-            removeTemporaryMessage();
-            addMessage('죄송합니다. 추가 정보를 가져오는 데 문제가 발생했습니다.');
         }
     }
 
