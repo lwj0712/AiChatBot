@@ -106,13 +106,15 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const url = "https://open-api.jejucodingcamp.workers.dev/";
         
         const data = [
-            {"role": "system", "content": "system은 영화 평론가 입니다. 주어진 영화에 대한 자세한 정보를 제공합니다."},
+            {"role": "system", "content": "system은 영화 평론가 입니다. 주어진 영화에 대한 더 자세한 정보를 제공합니다."},
             {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${currentMovie}
+            주의: 예시와 같이 정확하게 줄바꿈을 하여 가독성을 높여주세요.
 
             다음 형식에 맞춰 정확히 작성해주세요:
 
-            1. 주요 배우 및 감독:
-            [주요 배우들과 감독의 이름을 나열하고, 각각의 역할이나 특징을 간단히 설명해주세요.]
+            1. 주요 배우 및 감독: 
+            - 감독: 감독의 이름
+            - 배우 : 주요 배우들의 이름과 배역 이름, 역할이나 특징 등등을 간단히 설명해주세요.
 
             2. 제작 배경:
             [영화의 제작 배경이나 흥미로운 에피소드를 2-3문장으로 설명해주세요.]
