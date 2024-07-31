@@ -109,6 +109,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             {"role": "system", "content": "system은 영화 평론가 입니다. 주어진 영화에 대한 더 자세한 정보를 제공합니다."},
             {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${currentMovie}
             주의: 예시와 같이 정확하게 줄바꿈을 하여 가독성을 높여주세요.
+            주의: 스포일러는 제외.
 
             다음 형식에 맞춰 정확히 작성해주세요:
 
