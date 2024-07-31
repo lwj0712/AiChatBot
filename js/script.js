@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         startButtonContainer.id = 'start-btn-container';
 
         const startButton = document.createElement('button');
-        startButton.textContent = "Let's start";
+        startButton.textContent = "대화 시작하기";
         startButton.id = 'start-btn';
 
         startButtonContainer.appendChild(startButton);

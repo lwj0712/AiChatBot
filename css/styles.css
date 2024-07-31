@@ -123,12 +123,12 @@ h1 {
 }
 
 #start-btn {
-    padding: 10px 20px;
+    padding: 10px 50px;
     background-color: #fef01b;
     color: #3c1e1e;
     border: none;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 30px;
+    font-size: 30px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
