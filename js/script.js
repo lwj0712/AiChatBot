@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+    const chatContainer = document.getElementById('chat-container');
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
-    let isFirstMessage = true;
+    const inputContainer = document.getElementById('input-container');
 
     function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
@@ -38,21 +39,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             [스포일러 없이 사용자의 흥미를 유발할 수 있는 영화의 대략적인 줄거리를 2-3문장으로 작성.]
 
             4. 추가 정보:
-            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]
-                
-            예시:
-            1. 제목: 인셉션 inception (2010) / SF, 액션
-            - 별점: ★★★★☆
-            - 한 줄 평론: "꿈속의 꿈, 당신의 상상력을 초월하는 영화!"
-
-            2. 선정 이유: 
-            "인셉션은 혁신적인 스토리텔링과 놀라운 시각 효과로 유명합니다. 크리스토퍼 놀란 감독의 걸작으로, 영화의 복잡한 구조와 몰입감이 돋보입니다."
-
-            3. 시놉시스: 
-            "꿈을 통해 정보를 훔치는 도둑이 마지막 임무로 꿈을 심어야 하는 상황에 처합니다. 현실과 꿈의 경계가 모호해지는 서스펜스 넘치는 여정을 그린 영화입니다."
-            
-            4. 추가 정보: 
-            "영화 속에서 등장하는 '토템'은 각 캐릭터의 현실 인식을 위한 중요한 도구입니다."`}           
+            [알고 보면 더 재미있는 내용을 1-2문장으로 작성. 스포일러는 제외.]`}           
         ];
 
         try {
@@ -77,36 +64,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function showStartButton() {
+        const startButtonContainer = document.createElement('div');
+        startButtonContainer.id = 'start-btn-container';
+
         const startButton = document.createElement('button');
         startButton.textContent = "Let's start";
         startButton.id = 'start-btn';
-        startButton.style.cssText = `
-            padding: 10px 20px;
-            background-color: #fef01b;
-            color: #3c1e1e;
-            border: none;
-            border-radius: 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: block;
-            margin: 20px auto;
-        `;
-        chatMessages.appendChild(startButton);
+
+        startButtonContainer.appendChild(startButton);
+        chatContainer.appendChild(startButtonContainer);
 
         startButton.addEventListener('click', () => {
-            startButton.remove();
-            showInputArea();
+            startButtonContainer.remove();
+            showChatInterface();
             addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
         });
     }
 
-    function showInputArea() {
-        document.getElementById('input-container').style.display = 'flex';
+    function showChatInterface() {
+        chatMessages.style.display = 'block';
+        inputContainer.style.display = 'flex';
     }
 
-    function hideInputArea() {
-        document.getElementById('input-container').style.display = 'none';
+    function hideChatInterface() {
+        chatMessages.style.display = 'none';
+        inputContainer.style.display = 'none';
     }
 
     submitBtn.addEventListener('click', async () => {
@@ -115,11 +97,11 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            hideInputArea();
-            addMessage('잠시만 기다려주세요...');
+            inputContainer.style.display = 'none';
+            addMessage('영화를 추천하는 중입니다. 잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
             addMessage(recommendation);
-            showInputArea();
+            inputContainer.style.display = 'flex';
         }
     });
 
@@ -129,6 +111,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    hideInputArea();
+    hideChatInterface();
     showStartButton();
 });
