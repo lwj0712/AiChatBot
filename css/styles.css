@@ -138,9 +138,13 @@ h1 {
     background-color: #f7e600;
 }
 
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
 .more-info-btn {
-    display: block;
-    margin: 10px 0 0 auto;  /* 오른쪽 정렬 */
     padding: 8px 16px;
     background-color: #4CAF50;
     color: white;
@@ -160,6 +164,6 @@ h1 {
     background-color: #ffffff;
     border-radius: 5px 5px 5px 5px;
     padding: 10px 15px;
-    position: relative;  /* 추가 */
-    clear: both;  /* 추가 */
+    position: relative;
+    clear: both;
 }

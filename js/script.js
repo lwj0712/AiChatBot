@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const inputContainer = document.getElementById('input-container');
 
     let currentMovie = null;
+    let isAdditionalInfo = false;
 
     function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
@@ -16,12 +17,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         messageElement.innerHTML = formattedContent;
         
-        if (!isUser && currentMovie) {
+        if (!isUser && currentMovie && !isAdditionalInfo) {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.classList.add('button-container');
+            
             const buttonElement = document.createElement('button');
             buttonElement.textContent = "더 자세한 정보";
             buttonElement.classList.add('more-info-btn');
             buttonElement.addEventListener('click', handleMoreInfo);
-            messageElement.appendChild(buttonElement);
+            
+            buttonContainer.appendChild(buttonElement);
+            messageElement.appendChild(buttonContainer);
         }
         
         chatMessages.appendChild(messageElement);
@@ -172,6 +178,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
             userInput.value = '';
             
             addMessage('잠시만 기다려주세요...');
+            isAdditionalInfo = false;
             const recommendation = await getRecommendation(input);
             addMessage(recommendation);
         }
@@ -185,6 +192,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     async function handleMoreInfo() {
         addMessage('추가 정보를 가져오고 있습니다...');
+        isAdditionalInfo = true;
         const moreInfo = await getMoreInformation();
         addMessage(moreInfo);
     }
