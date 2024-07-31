@@ -128,9 +128,10 @@ h1 {
     color: #3c1e1e;
     border: none;
     border-radius: 30px;
-    font-size: 30px;
+    font-size: 23px;
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: bold;
 }
 
 #start-btn:hover {
