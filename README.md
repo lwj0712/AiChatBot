@@ -19,7 +19,7 @@
 
 ## Wire Frame
 ![WBS](https://github.com/user-attachments/assets/9b989d9e-aa8f-44c6-8f55-e6fee6d0a3a1)
-[link](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
+[링크](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
 ## 추가 할 기능
 * ~~대문 페이지 추가~~
