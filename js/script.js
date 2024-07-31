@@ -15,20 +15,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         const formattedContent = content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
         messageElement.innerHTML = formattedContent;
+        
+        if (!isUser && currentMovie) {
+            const buttonElement = document.createElement('button');
+            buttonElement.textContent = "더 자세한 정보";
+            buttonElement.classList.add('more-info-btn');
+            buttonElement.addEventListener('click', handleMoreInfo);
+            messageElement.appendChild(buttonElement);
+        }
+        
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-
-        if (!isUser && currentMovie) {
-            addMoreInfoButton();
-        }
-    }
-
-    function addMoreInfoButton() {
-        const buttonElement = document.createElement('button');
-        buttonElement.textContent = "더 자세한 정보";
-        buttonElement.classList.add('more-info-btn');
-        buttonElement.addEventListener('click', getMoreInformation);
-        chatMessages.appendChild(buttonElement);
     }
 
     async function getRecommendation(userInput) {
@@ -186,7 +183,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    async function getMoreInformation() {
+    async function handleMoreInfo() {
         addMessage('추가 정보를 가져오고 있습니다...');
         const moreInfo = await getMoreInformation();
         addMessage(moreInfo);
