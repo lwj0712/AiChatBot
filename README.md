@@ -17,7 +17,7 @@
 * 사용자가 익숙한 환경에서 ai와 편하게 대화하는 경험을 제공
   
 ## WBS
-![WBS](https://github.com/user-attachments/assets/fec89080-2cda-43fb-b3d1-a76eb9771f93)
+![WBS](https://github.com/user-attachments/assets/9b1d9743-3d5b-4c5f-a0d6-0c0330d9b6c1)
 
 ## Wire Frame
 ![wireframe](https://github.com/user-attachments/assets/c58efa66-542d-4268-be54-b0b638477449)
