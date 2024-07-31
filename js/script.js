@@ -8,16 +8,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     let currentMovie = null;
     let isAdditionalInfo = false;
 
-    function addMessage(content, isUser = false) {
+    function addMessage(content, isUser = false, isLoading = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+        if (isLoading) {
+            messageElement.classList.add('loading-message');
+        }
         
         const formattedContent = content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
         messageElement.innerHTML = formattedContent;
         
-        if (!isUser && currentMovie && !isAdditionalInfo) {
+        if (!isUser && currentMovie && !isAdditionalInfo && !isLoading) {
             const buttonContainer = document.createElement('div');
             buttonContainer.classList.add('button-container');
             
@@ -32,6 +35,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        return messageElement;
     }
 
     async function getRecommendation(userInput) {
@@ -177,9 +182,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('잠시만 기다려주세요...');
+            const loadingMessage = addMessage('잠시만 기다려주세요...', false, true);
             isAdditionalInfo = false;
             const recommendation = await getRecommendation(input);
+            loadingMessage.remove();
             addMessage(recommendation);
         }
     });
@@ -191,9 +197,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     async function handleMoreInfo() {
-        addMessage('추가 정보를 가져오고 있습니다...');
+        const loadingMessage = addMessage('추가 정보를 가져오고 있습니다...', false, true);
         isAdditionalInfo = true;
         const moreInfo = await getMoreInformation();
+        loadingMessage.remove();
         addMessage(moreInfo);
     }
 
