@@ -2,7 +2,7 @@
 * ~~사용자가 원하는 장르를 입력하면 그에 맞는 영화를 추천해주는 서비스~~
 * 사용자가 입력한 내용을 바탕으로 그에 맞는 영화를 추천해주는 서비스
 * ChatGPT api 연동
-* HTML, CSS, JS 활용하여 웹페이지 구현
+* HTML, CSS, JS 활용하여 웹 페이지 구현
 
 ## 기획
 * 사용자에게 영화를 추천
@@ -22,6 +22,8 @@
 [링크](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
 ## 시연 영상
+![Animation](https://github.com/user-attachments/assets/b10e4c99-064e-480c-b411-0f8811d8d32a)
+[웹 페이지 링크]https://lwj0712.github.io/mini_project/
 
 ## 추가 할 기능
 * ~~대문 페이지 추가~~
