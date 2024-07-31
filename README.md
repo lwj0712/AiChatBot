@@ -11,15 +11,15 @@
 * 간단한 시놉시스 제공
 * 사용자가 원한다면 추가적인 정보 제공
 
+## 디자인
+* 카카오톡 대화방 형식의 레이아웃(나중에 변경할 수도 있음), 사용자가 익숙하고 편한 환경에서 ai와 대화하는 경험을 줄 수 있음
+  
 ## WBS
 
 ## Wire Frame
 ![WBS](https://github.com/user-attachments/assets/9b989d9e-aa8f-44c6-8f55-e6fee6d0a3a1)
 [link](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
-## 디자인
-* 카카오톡 대화방 형식의 레이아웃(나중에 변경할 수도 있음), 사용자가 익숙하고 편한 환경에서 ai와 대화하는 경험을 줄 수 있음
- 
 ## 추가 할 기능
 * ~~대문 페이지 추가~~
 * ~~대문 페이지에서 버튼을 누르면 채팅방으로 연결~~
