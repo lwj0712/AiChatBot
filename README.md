@@ -17,21 +17,15 @@
 * 사용자가 익숙한 환경에서 ai와 편하게 대화하는 경험을 제공
   
 ## WBS
+![WBS](https://github.com/user-attachments/assets/fec89080-2cda-43fb-b3d1-a76eb9771f93)
 
 ## Wire Frame
-![WBS](https://github.com/user-attachments/assets/ebc40b89-2f51-48cc-acd0-a9a6df7b9831)
+![wireframe](https://github.com/user-attachments/assets/c58efa66-542d-4268-be54-b0b638477449)
 [Figma URL](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
 ## 시연 영상
 ![Animation](https://github.com/user-attachments/assets/b10e4c99-064e-480c-b411-0f8811d8d32a)<br>
 [웹 페이지 URL](https://lwj0712.github.io/mini_project/)
-
-## 추가 할 기능
-* ~~대문 페이지 추가~~
-* ~~대문 페이지에서 버튼을 누르면 채팅방으로 연결~~
-* ~~.gitignore 파일 추가~~
-* ~~system이 추천해준 영화에 대해 user가 더 자세한 정보를 원한다면 추가적인 정보를 제공하는 기능 추가. ex) 감독, 배우, 관객 수 etc..~~
-* ~~응답이 출력 되면 전에 있던 (잠시만 기다려주세요...) 를 삭제하는 기능 추가~~
 
 ## 문제점
 * ~~vscode에서 flask를 사용하여 구동하던 코드라 github에서 정상적으로 동작하지 않음 -> 파일 경로 재설정 필요~~
