@@ -23,7 +23,7 @@
 
 ## 시연 영상
 ![Animation](https://github.com/user-attachments/assets/b10e4c99-064e-480c-b411-0f8811d8d32a)<br>
-[웹 페이지 링크]https://lwj0712.github.io/mini_project/
+[웹 페이지 링크](https://lwj0712.github.io/mini_project/)
 
 ## 추가 할 기능
 * ~~대문 페이지 추가~~
