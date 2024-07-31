@@ -21,6 +21,8 @@
 ![WBS](https://github.com/user-attachments/assets/ebc40b89-2f51-48cc-acd0-a9a6df7b9831)
 [링크](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
+## 시연 영상
+
 ## 추가 할 기능
 * ~~대문 페이지 추가~~
 * ~~대문 페이지에서 버튼을 누르면 채팅방으로 연결~~
