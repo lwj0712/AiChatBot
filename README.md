@@ -14,6 +14,7 @@
 ## WBS
 
 ## Wire Frame
+![WBS](https://github.com/user-attachments/assets/9b989d9e-aa8f-44c6-8f55-e6fee6d0a3a1)
 
 ## 디자인
 * 카카오톡 대화방 형식의 레이아웃(나중에 변경할 수도 있음), 사용자가 익숙하고 편한 환경에서 ai와 대화하는 경험을 줄 수 있음
