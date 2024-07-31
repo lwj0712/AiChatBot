@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const submitBtn = document.getElementById('submit-btn');
     const inputContainer = document.getElementById('input-container');
 
+    let currentMovie = null;
+
     function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
@@ -15,6 +17,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         messageElement.innerHTML = formattedContent;
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        if (!isUser && currentMovie) {
+            addMoreInfoButton();
+        }
+    }
+
+    function addMoreInfoButton() {
+        const buttonElement = document.createElement('button');
+        buttonElement.textContent = "더 자세한 정보";
+        buttonElement.classList.add('more-info-btn');
+        buttonElement.addEventListener('click', getMoreInformation);
+        chatMessages.appendChild(buttonElement);
     }
 
     async function getRecommendation(userInput) {
@@ -70,10 +84,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             const result = await response.json();
-            return result.choices[0].message.content;
+            currentMovie = result.choices[0].message.content;
+            return currentMovie;
         } catch (error) {
             console.error('Error:', error);
             return '죄송합니다. 문제가 발생했습니다.';
+        }
+    }
+
+    async function getMoreInformation() {
+        if (!currentMovie) return;
+
+        const url = "https://open-api.jejucodingcamp.workers.dev/";
+        
+        const data = [
+            {"role": "system", "content": "system은 영화 평론가 입니다. 주어진 영화에 대한 자세한 정보를 제공합니다."},
+            {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${currentMovie}
+
+            다음 형식에 맞춰 정확히 작성해주세요:
+
+            1. 주요 배우 및 감독:
+            [주요 배우들과 감독의 이름을 나열하고, 각각의 역할이나 특징을 간단히 설명해주세요.]
+
+            2. 제작 배경:
+            [영화의 제작 배경이나 흥미로운 에피소드를 2-3문장으로 설명해주세요.]
+
+            3. 수상 내역 또는 평가:
+            [영화가 받은 주요 상이나 평단의 평가를 간단히 언급해주세요.]
+
+            4. 흥행 성적:
+            [영화의 흥행 성적을 간단히 언급해주세요. 박스오피스 순위나 수익 등을 포함할 수 있습니다.]
+
+            5. 영화의 영향 또는 유산:
+            [이 영화가 영화계나 대중문화에 미친 영향이나 남긴 유산에 대해 2-3문장으로 설명해주세요.]`}           
+        ];
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error('API 요청에 실패했습니다.');
+            }
+
+            const result = await response.json();
+            return result.choices[0].message.content;
+        } catch (error) {
+            console.error('Error:', error);
+            return '죄송합니다. 추가 정보를 가져오는 데 문제가 발생했습니다.';
         }
     }
 
@@ -122,6 +185,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
             submitBtn.click();
         }
     });
+
+    async function getMoreInformation() {
+        addMessage('추가 정보를 가져오고 있습니다...');
+        const moreInfo = await getMoreInformation();
+        addMessage(moreInfo);
+    }
 
     hideChatInterface();
     showStartButton();

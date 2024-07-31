@@ -137,3 +137,20 @@ h1 {
 #start-btn:hover {
     background-color: #f7e600;
 }
+
+.more-info-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.more-info-btn:hover {
+    background-color: #45a049;
+}
