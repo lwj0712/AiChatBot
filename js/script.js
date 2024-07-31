@@ -2,27 +2,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const chatMessages = document.getElementById('chat-messages');
     const userInput = document.getElementById('user-input');
     const submitBtn = document.getElementById('submit-btn');
+    let isFirstMessage = true;
 
-    function addMessage(content, isUser = false, isTemporary = false) {
+    function addMessage(content, isUser = false) {
         const messageElement = document.createElement('div');
         messageElement.classList.add('message');
         messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
         
-        const formattedContent = content.split('\n\n').map(paragraph => `<p>${paragraph}</p>`).join('');
+        const formattedContent = content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
         
         messageElement.innerHTML = formattedContent;
-        if (isTemporary) {
-            messageElement.id = 'temporary-message';
-        }
         chatMessages.appendChild(messageElement);
         chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
-
-    function removeTemporaryMessage() {
-        const tempMessage = document.getElementById('temporary-message');
-        if (tempMessage) {
-            tempMessage.remove();
-        }
     }
 
     async function getRecommendation(userInput) {
@@ -85,16 +76,50 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     }
 
+    function showStartButton() {
+        const startButton = document.createElement('button');
+        startButton.textContent = "Let's start";
+        startButton.id = 'start-btn';
+        startButton.style.cssText = `
+            padding: 10px 20px;
+            background-color: #fef01b;
+            color: #3c1e1e;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: block;
+            margin: 20px auto;
+        `;
+        chatMessages.appendChild(startButton);
+
+        startButton.addEventListener('click', () => {
+            startButton.remove();
+            showInputArea();
+            addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
+        });
+    }
+
+    function showInputArea() {
+        document.getElementById('input-container').style.display = 'flex';
+    }
+
+    function hideInputArea() {
+        document.getElementById('input-container').style.display = 'none';
+    }
+
     submitBtn.addEventListener('click', async () => {
         const input = userInput.value.trim();
         if (input) {
             addMessage(input, true);
             userInput.value = '';
             
-            addMessage('잠시만 기다려주세요...', false, true);
+            hideInputArea();
+            addMessage('잠시만 기다려주세요...');
             const recommendation = await getRecommendation(input);
-            removeTemporaryMessage();
             addMessage(recommendation);
+            showInputArea();
         }
     });
 
@@ -104,5 +129,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    addMessage('안녕하세요! 어떤 영화를 추천해드릴까요? 장르, 분위기, 배우, 감독 등 원하시는 정보를 입력해주세요.');
+    hideInputArea();
+    showStartButton();
 });
