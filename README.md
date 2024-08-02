@@ -24,7 +24,7 @@
 [Figma URL](https://www.figma.com/design/2GujRH7iKVgktsKskor9S8/Mini-project?node-id=0-1&t=Pdyuo6l4BqYelV7E-0)
 
 ## 시연 영상
-![Animation](https://github.com/user-attachments/assets/b10e4c99-064e-480c-b411-0f8811d8d32a)<br>
+![Animation](https://github.com/user-attachments/assets/2313a02e-0215-454a-a142-44452bc1cd79)<br>
 [웹 페이지 URL](https://lwj0712.github.io/mini_project/)
 
 ## 문제점
