@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const submitBtn = document.getElementById('submit-btn');
     const inputContainer = document.getElementById('input-container');
 
+    let currentMovie = null;
     let isAdditionalInfo = false;
 
     function addMessage(content, isUser = false, isLoading = false) {
@@ -19,14 +20,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
         
         messageElement.innerHTML = formattedContent;
         
-        if (!isUser && !isAdditionalInfo && !isLoading) {
+        if (!isUser && currentMovie && !isAdditionalInfo && !isLoading) {
             const buttonContainer = document.createElement('div');
             buttonContainer.classList.add('button-container');
             
             const buttonElement = document.createElement('button');
             buttonElement.textContent = "더 자세한 정보";
             buttonElement.classList.add('more-info-btn');
-            buttonElement.addEventListener('click', () => handleMoreInfo(messageElement));
+            buttonElement.addEventListener('click', handleMoreInfo);
             
             buttonContainer.appendChild(buttonElement);
             messageElement.appendChild(buttonContainer);
@@ -91,19 +92,22 @@ document.addEventListener('DOMContentLoaded', (event) => {
             }
 
             const result = await response.json();
-            return result.choices[0].message.content;
+            currentMovie = result.choices[0].message.content;
+            return currentMovie;
         } catch (error) {
             console.error('Error:', error);
             return '죄송합니다. 문제가 발생했습니다.';
         }
     }
 
-    async function getMoreInformation(movieInfo) {
+    async function getMoreInformation() {
+        if (!currentMovie) return;
+
         const url = "https://open-api.jejucodingcamp.workers.dev/";
         
         const data = [
             {"role": "system", "content": "system은 영화 평론가 입니다. 주어진 영화에 대한 더 자세한 정보를 제공합니다."},
-            {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${movieInfo}
+            {"role": "user", "content": `다음 영화에 대해 더 자세한 정보를 제공해주세요: ${currentMovie}
             주의: 예시와 같이 정확하게 줄바꿈을 하여 가독성을 높여주세요.
             주의: 스포일러는 제외.
 
@@ -195,11 +199,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 
-    async function handleMoreInfo(messageElement) {
-        const movieInfo = messageElement.textContent;
+    async function handleMoreInfo() {
         const loadingMessage = addMessage('추가 정보를 가져오고 있습니다...', false, true);
         isAdditionalInfo = true;
-        const moreInfo = await getMoreInformation(movieInfo);
+        const moreInfo = await getMoreInformation();
         loadingMessage.remove();
         addMessage(moreInfo);
     }
