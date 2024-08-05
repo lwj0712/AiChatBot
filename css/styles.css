@@ -20,7 +20,7 @@ h1 {
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: relative;
-    height: 900px;  /* 고정 높이 설정 */
+    height: 900px;
     display: flex;
     flex-direction: column;
 }
